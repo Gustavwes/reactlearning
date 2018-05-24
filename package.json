@@ -1,0 +1,12 @@
+{
+  "name": "Project1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Gustavwes/reactlearning.git",
+  "author": "Gustav Westberg <gustavwes@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
