@@ -1,37 +1,69 @@
 'use strict';
 
-//arguments object - no longer bount with arrow functions
+// JSX - JavaScript XML
 
-var add = function add(a, b) {
-    return a + b;
+var appObject = {
+    title: 'Indecision App',
+    content: 'This is some information',
+    options: ['One', 'Two']
 };
-console.log(add(55, 1, 1001));
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        appObject.title
+    ),
+    appObject.content && React.createElement(
+        'p',
+        null,
+        appObject.content
+    ),
+    React.createElement(
+        'p',
+        null,
+        appObject.options.length > 0 ? 'Here are your options:' : 'No options'
+    )
+);
 
-//this keyword - no longer bound with arrow functions
-
-var user = {
-    name: 'Gustav',
-    cities: ['Stockholm', 'London', 'New York'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-    }
+var count = 0;
+var addOne = function addOne() {
+    console.log('addOne');
 };
-
-console.log(user.printPlacesLived());
-
-//challenges
-
-var multiplier = {
-    numbers: [1, 5, 20],
-    multiplyBy: function multiplyBy(number) {
-        return this.numbers.map(function (arrayNumber) {
-            return arrayNumber * number;
-        });
-    }
+var minusOne = function minusOne() {
+    console.log('minusOne');
 };
+var reset = function reset() {
+    console.log('reset');
+};
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        'Count: ',
+        count,
+        ' '
+    ),
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        '+1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        '-1'
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        'Reset'
+    )
+);
 
-console.log(multiplier.multiplyBy(2));
+var appRoot = document.getElementById('app');
+//ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
