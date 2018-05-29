@@ -8,10 +8,10 @@ const appObject = {
 
 const onFormSubmit = (e) => {
     e.preventDefault();
-    
+
     const option = e.target.elements.option.value;
 
-    if(option){
+    if (option) {
         appObject.options.push(option);
         e.target.elements.option.value = '';
         render();
@@ -26,18 +26,25 @@ const removeAll = () => {
     render();
 }
 
+const numbers = [55, 101, 1000];
+
 const render = () => {
-    const template =(
+    const template = (
         <div>
             <h1>{appObject.title}</h1>
             {appObject.content && <p>{appObject.content}</p>}
             <p>{appObject.options.length > 0 ? 'Here are your options:' : 'No options'}</p>
             <p>{appObject.options.length}</p>
             <button onClick={removeAll}>Remove All</button>
+
             <ol>
-                <li>Item one</li>
-                <li>Item two</li>
-            </ol>   
+                {
+                    appObject.options.map((item) => {
+                        return <li key={item}>{item}</li>;
+                    })
+                }
+            </ol>
+
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option" />
                 <button>Add Option</button>
