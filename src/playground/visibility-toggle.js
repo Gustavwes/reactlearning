@@ -1,66 +1,103 @@
 
 
-const appRoot = document.getElementById('app');
-let textContent = {
-    content: 'This is now visible'
-};
-let buttonText = {
-    text:'Hide details'
-};
+class VisibilityToggle extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+        this.state = {
+            visibility: false
+        }
+    }
 
-const showHide = () => {
-const button = document.getElementById('button');
-    if(textContent.content == '') {
-        textContent.content = 'This is now visible';
-        buttonText.text = 'Hide details';
+    handleToggleVisibility() {
+        this.setState((prevState) => {
+            return {
+                visibility: !prevState.visibility
+            }         
+
+        });
+    };
+
+    render() {
+        return (
+            <div>
+                <h1>Visibility Toggle</h1>
+                <button onClick={this.handleToggleVisibility}>{this.state.visibility ? 'Hide details' : 'Show details'}</button>
+                {this.state.visibility && (
+                    <div>
+                        <p>These are some details!</p>
+                    </div>
+                )}
+            </div>
+
+        )
     }
-    else {
-        textContent.content = '';
-        buttonText.text = 'Show details';
-    }
-    render();
 }
 
+ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
 
-const render = () => {
-    const template = (
-        <div>
-        <h1>Visibility Toggle</h1>
-            <button id="button" onClick={showHide}>{buttonText.text}</button>
-            <p>{textContent.content}</p>
-        </div>
-    );
-    ReactDOM.render(template, appRoot);
-};
+// //My old solution
+// const appRoot = document.getElementById('app');
+// let textContent = {
+//         content: 'This is now visible'
+//     };
+//     let buttonText = {
+//             text:'Hide details'
+// };
 
-render();
+// const showHide = () => {
+//     const button = document.getElementById('button');
+//         if(textContent.content == '') {
+//         textContent.content = 'This is now visible';
+//         buttonText.text = 'Hide details';
+//     }
+//     else {
+//             textContent.content = '';
+//             buttonText.text = 'Show details';
+//         }
+//         render();
+//     }
 
 
-// Lesson solution:
+//     const render = () => {
+//             const template = (
+//                     <div>
+//                     <h1>Visibility Toggle</h1>
+//                         <button id="button" onClick={showHide}>{buttonText.text}</button>
+//                         <p>{textContent.content}</p>
+//                     </div>
+//                 );
+//                 ReactDOM.render(template, appRoot);
+//             };
 
-let visibility = false;
-const hideShow = () => {
-    //visibility == false ? visibility = true : visibility = false;
-    visibility = !visibility; //works the same way as above
-    render2();
-}
+//             render();
 
-const render2 = () => {
-    const jsx = (
-        <div>
-            <h1>Visibility Toggle</h1>
-            <button onClick={hideShow}>
-                {visibility ? 'Hide details' : 'Show details'}
-            </button>
-            {visibility && (
-                <div>
-                    <p>These are some details!</p>
-                </div>
-            )}
-        </div>
-    );
 
-    ReactDOM.render(jsx, appRoot);
-};
+            // // Lesson solution:
 
-render2();
+            // let visibility = false;
+            // const hideShow = () => {
+            //     //visibility == false ? visibility = true : visibility = false;
+            //     visibility = !visibility; //works the same way as above
+            //     render2();
+            // }
+
+            // const render2 = () => {
+            //     const jsx = (
+            //         <div>
+            //             <h1>Visibility Toggle</h1>
+            //             <button onClick={hideShow}>
+            //                 {visibility ? 'Hide details' : 'Show details'}
+            //             </button>
+            //             {visibility && (
+            //                 <div>
+            //                     <p>These are some details!</p>
+            //                 </div>
+            //             )}
+            //         </div>
+            //     );
+
+            //     ReactDOM.render(jsx, appRoot);
+            // };
+
+            // render2();
